@@ -1,0 +1,5 @@
+package com.cognizant.userauthservice.service;
+
+public class EmailSender {
+
+}

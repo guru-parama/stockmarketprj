@@ -1,0 +1,50 @@
+package com.cognizant.userauthservice.service;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.cognizant.userauthservice.controller.UserController;
+import com.cognizant.userauthservice.dao.UserRepository;
+import com.cognizant.userauthservice.exception.UserAlreadyExistsException;
+import com.cognizant.userauthservice.model.Role;
+import com.cognizant.userauthservice.model.Users;
+
+public class UserService {
+
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired 
+	PasswordEncoder encoder;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	
+	@SuppressWarnings("unchecked")
+	public void signup(Users user) throws UserAlreadyExistsException {
+		if(userRepository.findByUserName(user.getUserName()) != null) {
+			throw new UserAlreadyExistsException();
+		}else {
+			@SuppressWarnings("rawtypes")
+			Set<Role> roleList = new HashSet();
+			roleList.add(new Role(2,"user"));
+			user.setRoleList(roleList);
+			userRepository.save(user);
+		}
+		
+	}
+	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        LOGGER.info("Start");
+        LOGGER.info("End");
+        return new BCryptPasswordEncoder();
+    }
+	
+}
