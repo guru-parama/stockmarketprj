@@ -1,14 +1,18 @@
 package com.cognizant.stockmarketcharting.excelupload.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -57,6 +61,12 @@ public class Company {
 	@NotNull
 	@Column(name="cp_brief")
 	private String aboutCompany;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "company_stock",
+			joinColumns = @JoinColumn(name = "cs_cp_id"),
+			inverseJoinColumns = @JoinColumn(name="cs_ex_id"))
+	private Set<StockExchange> stockExchanges;
 	
 	public Company() {
 		super();
