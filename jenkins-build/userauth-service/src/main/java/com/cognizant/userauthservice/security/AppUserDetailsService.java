@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.userauthservice.dao.UserRepository;
-import com.cognizant.userauthservice.model.Users;
+import com.cognizant.userauthservice.model.User;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -25,7 +25,7 @@ public class AppUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		AppUser appUser;
-		Users user = userRepository.findByUserName(username);
+		User user = userRepository.findByUserName(username);
 		if(user.getUserName() == null) {
 			throw new UsernameNotFoundException("User not found"); 
 		}else {

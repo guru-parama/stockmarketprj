@@ -7,10 +7,13 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cognizant.userauthservice.model.User;
 
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -20,16 +23,22 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class AuthenticationController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
+	
+	@Autowired
+	UserController userController;
+	
 	@GetMapping("/authenticate")
 	public Map<String, String> authenticate(@RequestHeader("Authorization") String authHeader){
 		LOGGER.info("Start");
 		Map<String, String> data = new HashMap<>();
 		String role = SecurityContextHolder.getContext().getAuthentication()
                 .getAuthorities().toArray()[0].toString();
-		String user = SecurityContextHolder.getContext().getAuthentication().getName();
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		User user = userController.findByUserName(userName); 
 		data.put("token", generateJwt(getUser(authHeader)));
 		data.put("role", role);
-		data.put("username", user);
+		data.put("username", userName);
+		data.put("confirmed", user.isConfirmed()+"");
 		LOGGER.info("End");
 		return data;
 	}

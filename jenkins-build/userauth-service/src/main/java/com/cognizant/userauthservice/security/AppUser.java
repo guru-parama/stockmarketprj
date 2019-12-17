@@ -7,16 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.cognizant.userauthservice.model.Users;
+import com.cognizant.userauthservice.model.User;
 
 @SuppressWarnings("serial")
 public class AppUser implements UserDetails {
 
-	private Users user; // entity reference
+	private User user; // entity reference
 	private Collection<? extends GrantedAuthority> authorities; // to store role details
 
 	
-	public AppUser(Users user) {
+	public AppUser(User user) {
 		super();
 		this.user = user;
 		this.authorities = user.getRoleList().stream()

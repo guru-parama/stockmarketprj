@@ -18,10 +18,11 @@ CREATE TABLE IF NOT EXISTS `stock_market`.`user` (
   `us_user_name` VARCHAR(60) NULL,
   `us_password` VARCHAR(60) NOT NULL,
   `us_email` VARCHAR(50) NOT NULL,
-  `us_mobile_number` VARCHAR(10) NOT NULL,
+  `us_mobile_number` VARCHAR(12) NOT NULL,
   `us_confirmed` BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (`us_id`))
 ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `stock_market`.`role`
@@ -59,11 +60,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stock_market`.`company` (
   `cp_id` INT NOT NULL AUTO_INCREMENT,
-  `cp_code` VARCHAR(20) NOT NULL,
+  `cp_code` BIGINT NOT NULL,
   `cp_name` VARCHAR(30) NOT NULL,
   `cp_turnover` BIGINT NOT NULL,
   `cp_ceo` VARCHAR(30) NOT NULL,
-  `cp_board_of_directors` VARCHAR(500) NOT NULL,
   `cp_listed` BOOLEAN DEFAULT FALSE,
   `cp_se_id` INT NOT NULL,
   `cp_brief` VARCHAR(600) NOT NULL,
@@ -71,9 +71,7 @@ CREATE TABLE IF NOT EXISTS `stock_market`.`company` (
   INDEX `cp_se_fk_idx` (`cp_se_id` ASC),
   CONSTRAINT `cp_se_fk`
     FOREIGN KEY (`cp_se_id`)
-    REFERENCES `stock_market`.`sector` (`se_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `stock_market`.`sector` (`se_id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -82,6 +80,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `stock_market`.`stock_price` (
   `sp_id` INT NOT NULL AUTO_INCREMENT,
+  `sp_code` BIGINT NOT NULL,
   `sp_stock_exchange` VARCHAR(30) NOT NULL,
   `sp_current_price` BIGINT NOT NULL,
   `sp_date` DATE NOT NULL,
@@ -121,7 +120,6 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `stock_market`.`stock_exchange` (
   `ex_id` INT NOT NULL AUTO_INCREMENT,
-  `ex_company_code` VARCHAR(30) NOT NULL,
   `ex_stock_exchange` VARCHAR(30) NOT NULL,
   `ex_brief` VARCHAR(400) NOT NULL,
   `ex_address` VARCHAR(200) NOT NULL,
@@ -147,6 +145,24 @@ CREATE TABLE IF NOT EXISTS `stock_market`.`company_stock` (
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION)
 	ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `stock_market`.`board_members`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `stock_market`.`board_members` (
+  `bm_id` INT NOT NULL AUTO_INCREMENT,
+  `bm_cp_name` VARCHAR(30) NOT NULL,
+  `bm_cp_id` INT NOT NULL,
+  PRIMARY KEY (`bm_id`),
+  INDEX `bm_cp_fk_idx` (`bm_cp_id` ASC),
+   CONSTRAINT `bm_cp_fk`
+    FOREIGN KEY (`bm_cp_id`)
+    REFERENCES `stock_market`.`company` (`cp_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  )
+  
+ENGINE = InnoDB;
     
 INSERT INTO `stock_market`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'admin');
 INSERT INTO `stock_market`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'user');
@@ -154,5 +170,10 @@ INSERT INTO `stock_market`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'user');
 INSERT INTO `stock_market`.`user` (`us_id`, `us_user_name`, `us_password`, `us_email`, `us_mobile_number`, `us_confirmed`) VALUES ('1', 'a', '$2a$10$Fh4z/fhXrTEnP8z/chE3/.aVTYPMpCMX65Vc2m8t9rASdLEfGTaD2', 'a@gmail.com', '7894561230', '1');
 
 INSERT INTO `stock_market`.`user_role` (`ur_id`, `ur_us_id`, `ur_ro_id`) VALUES ('1', '1', '1');
+
+INSERT INTO `stock_market`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('1', 'Banking', 'banks sector');
+INSERT INTO `stock_market`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('1', '500112', 'BOI', '54685', 'GURU', '1', '1', 'bank of India');
+INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('1', 'BSE', 'british', 'kuruku theru', 'nil');
+INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('1', '1', '1');
 
 

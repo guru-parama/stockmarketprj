@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
     this.newUser.mobileNumber = this.userForm.value.mobileNumber;
     this.newUser.password = this.userForm.value.password;
     this.newUser.confiremd = this.userForm.value.confiremd;
-    this.userService.addUser(this.newUser).subscribe(responce=>{
+    this.userService.addUser(this.newUser).subscribe(response=>{
     this.router.navigate(['login']);
   },
     error=>{

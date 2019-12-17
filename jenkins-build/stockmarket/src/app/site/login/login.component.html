@@ -2,8 +2,9 @@
         <form class="card card-margin shadow-lg " [formGroup]="loginForm">
     
             <div class="card-body">
-                <h3 class="mb-3 display-4">Login</h3>
-                <div class="col-12 alert-msg border border-danger p-3 my-3" *ngIf="loginFlag == true"><div>Invalid Username/Password</div></div>                
+                <h3 class="mb-3 display-4 text-center">Login</h3>
+                <div class="col-12 alert alert-danger text-center p-3 my-3" *ngIf="loginFlag == true"><div>Invalid Username/Password</div></div>     
+                <div class="col-12 alert alert-danger text-center p-3 my-3" *ngIf="notConfirmedFlag == true"><div>Verify E-Mail Id</div></div>                
                 <div class="form-row">
                     <div class="form-group col-md-12 col-lg-12">
                         <label for="userName">User Name</label> 
@@ -33,14 +34,14 @@
                     </div>
                     
                 </div>
-                <div class="form-row d-flex justify-content-end">
+                <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-lg-3 mb-0">
                         <button class="btn bg-danger save-button text-white btn-block" 
                                 type="button" 
                                 (click) = "login()" 
                                 [disabled]="!loginForm.valid" >Login</button>
                     </div>
-                    <div class="col-lg-3 text-center align-middle"><span class="text-secondary">New here? </span><a
+                    <div class="col-lg-3 text-right align-middle"><span class="text-secondary">New here? </span><a
                         routerLink="/signup">Signup</a></div>
                 </div>
             </div>

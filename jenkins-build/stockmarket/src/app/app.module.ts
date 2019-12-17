@@ -8,13 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './site/signup/signup.component';
 import { HeaderComponent } from './site/header/header.component';
 import { LoginComponent } from './site/login/login.component';
+import { SummaryComponent } from './file-upload/summary/summary.component';
+import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    SummaryComponent,
+    ExcelUploadComponent
   ],
   imports: [
     BrowserModule,

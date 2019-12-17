@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.cognizant.userauthservice.dao.UserRepository;
 import com.cognizant.userauthservice.exception.UserAlreadyExistsException;
 import com.cognizant.userauthservice.model.Role;
-import com.cognizant.userauthservice.model.Users;
+import com.cognizant.userauthservice.model.User;
 
 @Service
 public class UserService {
@@ -26,7 +26,7 @@ public class UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 	
 	@SuppressWarnings("unchecked")
-	public void signup(Users user) throws UserAlreadyExistsException {
+	public void signup(User user) throws UserAlreadyExistsException {
 		LOGGER.info("Start");
 		if(userRepository.findByUserName(user.getUserName()) != null) {
 			throw new UserAlreadyExistsException();
@@ -42,7 +42,7 @@ public class UserService {
 		LOGGER.info("End");
 	}
 	
-	public Users findByUserName(String userName) {
+	public User findByUserName(String userName) {
 		LOGGER.info("Start");
 		return userRepository.findByUserName(userName);
 	}

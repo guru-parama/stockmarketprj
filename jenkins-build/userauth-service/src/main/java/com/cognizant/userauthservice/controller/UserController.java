@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.userauthservice.exception.UserAlreadyExistsException;
-import com.cognizant.userauthservice.model.Users;
+import com.cognizant.userauthservice.model.User;
+import com.cognizant.userauthservice.service.EmailServiceImpl;
+import com.cognizant.userauthservice.service.UserConfirmationService;
 import com.cognizant.userauthservice.service.UserService;
 
 
@@ -30,19 +32,33 @@ public class UserController {
 	PasswordEncoder passwordEncoder; 
 	
 	@Autowired
+	EmailServiceImpl emailServiceImpl;
+	
+	@Autowired
 	UserService userService;
 	
+	@Autowired
+	UserConfirmationService userConfirmationService;
+	
 	@PostMapping("/signup")
-	public void signup(@RequestBody @Valid Users user) throws UserAlreadyExistsException {
+	public void signup(@RequestBody @Valid User user) throws UserAlreadyExistsException {
 	
 		LOGGER.info("Start");
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		String token = userConfirmationService.setTokenForConfirmation(user.getUserName());
+		emailServiceImpl.send("ctstestmail10@gmail.com", user.getEmail(), "test",  "Click the link to activate http://localhost:8086/userauth-service/stockmarket/confirm/"+token);
+		user.setConfirmed(false);
 		userService.signup(user);
 		LOGGER.info("End");
 	}
 	
+
+	@GetMapping("/confirm/{token}")
+	public void confirmMail(@PathVariable String token) {
+		userConfirmationService.confirmMailAddress(token);
+	}
+	
 	@GetMapping("/user/{userName}")
-	public Users findByUserName(@PathVariable String userName) {
+	public User findByUserName(@PathVariable String userName) {
 		LOGGER.info("Start");
 		return userService.findByUserName(userName);
 	}

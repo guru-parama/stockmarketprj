@@ -14,4 +14,5 @@
 <item elementID="=zuul-gateway/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1576493386112_2" label="Window Working Set" name="Aggregate for window 1576493386111"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1576555424416_3" label="Window Working Set" name="Aggregate for window 1576555424416"/>
 </workingSetManager>
