@@ -10,11 +10,15 @@ import { Company } from '../company';
 export class CompanyComponent implements OnInit {
 
   companyList: Company[];
+  filteredList: Company[];
+  searchString: string;
+  company: Company;
+  stockDetailsLatestList: any[];
 
   constructor(private companyService: CompanyService) {
     this.companyService.getAllCompanies().subscribe(response =>{
       this.companyList = response;
-      console.log(this.companyList);
+      this.filteredList = this.companyList;
     });
    }
 
@@ -22,4 +26,22 @@ export class CompanyComponent implements OnInit {
    
   }
 
+  filter(){
+    this.filteredList = this.companyList.filter((company: Company) => company
+                      .name
+                      .toLocaleLowerCase()
+                      .indexOf(this.searchString) != -1
+    );
+  }
+
+  getCompanyDetails(id){
+    this.companyList.forEach(comp =>{
+      if(comp.id == id){
+        this.company = comp;
+      }
+    });
+    this.companyService.getStockLatest(this.company.companyCode).subscribe(response =>{
+      this.stockDetailsLatestList = response;
+    })
+  }
 }

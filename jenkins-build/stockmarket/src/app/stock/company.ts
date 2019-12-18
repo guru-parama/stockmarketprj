@@ -4,7 +4,7 @@ import { StockExchange } from './stockExchange';
 
 export interface Company{
     id: number;
-    companycode: number;
+    companyCode: number;
     name: string;
     turnover: number;
     ceo: string;

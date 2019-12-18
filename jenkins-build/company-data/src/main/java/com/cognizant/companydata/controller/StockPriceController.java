@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,11 @@ public class StockPriceController {
 	@GetMapping("/stock-price")
 	public List<StockPrice> getAllStockList() {
 		return stockPriceService.getAllStockPrice();
+	}
+	
+	@GetMapping("/stock-price/latest/{companyCode}")
+	public List<StockPrice> getLatest(@PathVariable long companyCode) {
+		return stockPriceService.getLatestStock(companyCode);
 	}
 	
 }

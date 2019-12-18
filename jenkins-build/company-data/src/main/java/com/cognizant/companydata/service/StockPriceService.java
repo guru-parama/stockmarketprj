@@ -19,4 +19,8 @@ public class StockPriceService {
 	public List<StockPrice> getAllStockPrice() {
 		return stockPriceRepository.findAll();
 	}
+	
+	public List<StockPrice> getLatestStock(long companyCode){
+		return stockPriceRepository.getStockPrice(companyCode);
+	}
 }
