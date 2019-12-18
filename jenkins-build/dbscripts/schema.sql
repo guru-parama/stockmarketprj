@@ -23,6 +23,12 @@ CREATE TABLE IF NOT EXISTS `stock_market`.`user` (
   PRIMARY KEY (`us_id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `stock_market`.`confirmation_table` (
+  `ct_id` INT NOT NULL AUTO_INCREMENT,
+  `ct_token` VARCHAR(60) NULL,
+  `ct_user_name` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`ct_id`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `stock_market`.`role`
@@ -171,9 +177,15 @@ INSERT INTO `stock_market`.`user` (`us_id`, `us_user_name`, `us_password`, `us_e
 
 INSERT INTO `stock_market`.`user_role` (`ur_id`, `ur_us_id`, `ur_ro_id`) VALUES ('1', '1', '1');
 
-INSERT INTO `stock_market`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('1', 'Banking', 'banks sector');
+INSERT INTO `stock_market`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('1', 'Banking', 'Banking sector');
+INSERT INTO `stock_market`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('2', 'Healthcare', 'Healthcare sector');
+INSERT INTO `stock_market`.`sector` (`se_id`, `se_sector_name`, `se_brief`) VALUES ('3', 'Finance', 'Finance sector');
 INSERT INTO `stock_market`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('1', '500112', 'BOI', '54685', 'GURU', '1', '1', 'bank of India');
-INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('1', 'BSE', 'british', 'kuruku theru', 'nil');
+INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('1', 'BSE', 'Bombay', 'kuruku theru', 'nil');
+INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('2', 'NSE', 'India', 'kuruku theru', 'nil');
+INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_brief`, `ex_address`, `ex_remarks`) VALUES ('3', 'CSE', 'Culcatta', 'kuruku theru', 'nil');
 INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('1', '1', '1');
+INSERT INTO `stock_market`.`board_members` (`bm_id`, `bm_cp_name`, `bm_cp_id`) VALUES ('1', 'MACKINSON', '1');
+
 
 

@@ -1,5 +1,7 @@
 package com.cognizant.userauthservice.controller;
 
+import java.util.Base64;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +47,7 @@ public class UserController {
 	public void signup(@RequestBody @Valid User user) throws UserAlreadyExistsException {
 	
 		LOGGER.info("Start");
-		String token = userConfirmationService.setTokenForConfirmation(user.getUserName());
+		String token = userConfirmationService.setTokenForConfirmation(user.getUsername());
 		emailServiceImpl.send("ctstestmail10@gmail.com", user.getEmail(), "test",  "Click the link to activate http://localhost:8086/userauth-service/stockmarket/confirm/"+token);
 		user.setConfirmed(false);
 		userService.signup(user);
@@ -60,7 +63,13 @@ public class UserController {
 	@GetMapping("/user/{userName}")
 	public User findByUserName(@PathVariable String userName) {
 		LOGGER.info("Start");
-		return userService.findByUserName(userName);
+		User user = userService.findByUserName(userName);
+		return user;
+	}
+	
+	@PutMapping("/user")
+	public void updateUser(@RequestBody User user) {
+		userService.updateUser(user);
 	}
 	
 }

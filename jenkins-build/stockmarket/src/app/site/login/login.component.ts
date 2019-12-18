@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           this.userAuth.setRole(response.role);
           this.loginFlag = false;
           this.notConfirmedFlag = false;
-          this.router.navigate(['excel-upload']);
+          this.router.navigate(['company-list']);
         }
         else{
           this.notConfirmedFlag = true;

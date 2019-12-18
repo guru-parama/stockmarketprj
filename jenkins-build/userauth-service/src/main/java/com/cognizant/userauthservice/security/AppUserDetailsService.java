@@ -26,7 +26,7 @@ public class AppUserDetailsService implements UserDetailsService {
 		
 		AppUser appUser;
 		User user = userRepository.findByUserName(username);
-		if(user.getUserName() == null) {
+		if(user.getUsername() == null) {
 			throw new UsernameNotFoundException("User not found"); 
 		}else {
 			appUser = new AppUser(user);  

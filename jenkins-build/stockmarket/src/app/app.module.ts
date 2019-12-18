@@ -10,6 +10,8 @@ import { HeaderComponent } from './site/header/header.component';
 import { LoginComponent } from './site/login/login.component';
 import { SummaryComponent } from './file-upload/summary/summary.component';
 import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.component';
+import { ProfileComponent } from './site/profile/profile.component';
+import { CompanyComponent } from './stock/company/company.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.co
     HeaderComponent,
     LoginComponent,
     SummaryComponent,
-    ExcelUploadComponent
+    ExcelUploadComponent,
+    ProfileComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,

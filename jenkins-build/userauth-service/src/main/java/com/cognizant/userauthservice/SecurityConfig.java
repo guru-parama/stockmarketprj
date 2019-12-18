@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.cognizant.userauthservice.security.AppUserDetailsService;
+import com.cognizant.userauthservice.security.JwtAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -39,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers("/stockmarket/signup").permitAll()
         .antMatchers("/stockmarket/confirm").permitAll()
-        .anyRequest().authenticated();
+        .anyRequest().authenticated().and().addFilter(new JwtAuthorizationFilter(authenticationManager()));
+	
     }
     
     

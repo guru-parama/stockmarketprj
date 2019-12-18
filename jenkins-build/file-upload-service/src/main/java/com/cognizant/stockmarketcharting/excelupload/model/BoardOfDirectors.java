@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +19,8 @@ public class BoardOfDirectors {
 	@Column(name = "bm_cp_name")
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "bm_cp_id")
-	private Company company;
+	@Column(name = "bm_cp_id")
+	private int companyId;
 
 	public BoardOfDirectors() {
 		super();
@@ -46,13 +43,15 @@ public class BoardOfDirectors {
 		this.name = name;
 	}
 
-	public Company getCompany() {
-		return company;
+	public int getCompanyId() {
+		return companyId;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
+
+	
 
 	
 	

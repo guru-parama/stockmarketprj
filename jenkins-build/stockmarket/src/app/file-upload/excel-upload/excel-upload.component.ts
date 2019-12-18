@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticateService } from 'src/app/site/authenticate.service';
 
 @Component({
   selector: 'app-excel-upload',
@@ -11,7 +12,7 @@ export class ExcelUploadComponent implements OnInit {
   uploadFlag:boolean=false;
   apiEndPoint = "http://localhost:8086/file-upload-service/stockmarket/upload";
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private authenticateService: AuthenticateService) {
   }
 
   ngOnInit(){}
@@ -22,10 +23,9 @@ export class ExcelUploadComponent implements OnInit {
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append('uploadFile', file, file.name);
-      let headers = new Headers();
-      headers.append('Accept', 'application/json');
-      this.http.post(this.apiEndPoint, formData)
-        .subscribe(
+      let token = "Bearer "+ this.authenticateService.getToken();
+      const httpOption = { headers : new HttpHeaders({'Content-Type' : 'multipart/form-data; boundary=----WebKitFormBoundaryJ6Q2VG5TMUfGoSqg', 'Authorization': token})};
+      this.http.post(this.apiEndPoint, formData).subscribe(
               (response)=>this.uploadFlag =true
         
         )

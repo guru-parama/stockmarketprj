@@ -1,0 +1,82 @@
+<div class="container my-5  ">
+    <form class="card card-margin shadow-lg " [formGroup]="profileEditForm">
+
+        <div class="card-body">
+            <h3 class="mb-3 display-4 text-center">Profile</h3>
+            <div class="form-row">
+                <div class="form-group col-md-12 col-lg-12">
+                    <label >User Name - {{user?.username}}</label> 
+                </div>
+                <div class="form-group col-md-12 col-lg-12">
+                    <label >E-Mail Id - {{user?.email}}</label> 
+                </div>
+            </div>
+           
+            <div class="form-row d-flex justify-content-between">
+                <div class="form-group col-lg-3 mb-0">
+                    <button class="btn bg-danger save-button text-white btn-block" 
+                            type="button" 
+                            (click) = "editPassword()" >
+                            Change Password
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="editPasswordFlag == true">
+                <div class="form-group col-md-6 col-lg-6 p-0 my-2">
+                    <label for="pwd">Enter your old password</label>
+                    <input  type="password" 
+                            formControlName = "oldPassword" 
+                            class="form-control" 
+                            id="pwd" 
+                            placeholder="Enter Password">                
+                <div class="form-group col-lg-3 mb-0 p-0 my-3">
+                    <button class="btn bg-danger save-button text-white btn-block" 
+                            type="button" 
+                            (click) = "verify(profileEditForm.value.password)" >
+                            Verify
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="verifyFlag == true">
+                <div class="form-group col-md-6 col-lg-6">
+                    <label for="pwd">Password</label>
+                    <input  type="password" 
+                            formControlName = "password" 
+                            class="form-control" 
+                            id="pwd" 
+                            placeholder="Enter Password">                
+                <div  *ngIf="!profileEditForm.controls.password.valid  &&  (profileEditForm.controls.password.dirty  || profileEditForm.controls.password.touched); else elseblck"  class="text-white">
+                        <div class="badge bg-danger col" *ngIf = "! profileEditForm.controls.password.errors.reqiured">Password reqiured</div>                         
+                    </div>
+                    <ng-template #elseblck><br></ng-template>
+                </div>
+                <div class="form-group col-md-6 col-lg-6">
+                    <label for="cpwd">Confirm Password</label>
+                    <input  type="password" 
+                            formControlName = "confirmPassword" 
+                            (keyup)="passMatch()" 
+                            class="form-control" 
+                            id="cpwd" 
+                            placeholder="Enter Confirm Password">
+                    <div  *ngIf="!profileEditForm.controls.confirmPassword.valid  &&  (profileEditForm.controls.confirmPassword.dirty  || profileEditForm.controls.confirmPassword.touched)"  class="text-white">
+                            <div class="badge bg-danger col" *ngIf = "! profileEditForm.controls.confirmPassword.errors.reqiured">Confirm Password</div>                      
+                    </div>
+                    <div  *ngIf="profileEditForm.controls.confirmPassword.valid  &&  (profileEditForm.controls.confirmPassword.dirty  || profileEditForm.controls.confirmPassword.touched)"  class="text-white">
+                            <div class="badge bg-danger col" *ngIf = "passwordFlag == false">Enter matching password</div>
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-between">
+                    <div class="form-group col-lg-3 mb-0">
+                        <button class="btn bg-danger save-button text-white btn-block" 
+                                type="button" 
+                                (click) = "submit()" >
+                                Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </form>
+    
+</div>

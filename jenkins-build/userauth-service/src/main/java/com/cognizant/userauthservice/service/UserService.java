@@ -28,7 +28,7 @@ public class UserService {
 	@SuppressWarnings("unchecked")
 	public void signup(User user) throws UserAlreadyExistsException {
 		LOGGER.info("Start");
-		if(userRepository.findByUserName(user.getUserName()) != null) {
+		if(userRepository.findByUserName(user.getUsername()) != null) {
 			throw new UserAlreadyExistsException();
 		}else {
 			@SuppressWarnings("rawtypes")
@@ -45,6 +45,12 @@ public class UserService {
 	public User findByUserName(String userName) {
 		LOGGER.info("Start");
 		return userRepository.findByUserName(userName);
+	}
+	
+	public void updateUser(User user) {
+		String encodedPassword = encoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		userRepository.save(user);
 	}
 	
 }

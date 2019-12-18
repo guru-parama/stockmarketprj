@@ -103,9 +103,14 @@ public class ExcelUploadServiceImpl implements ExcelUploadService {
 	                    }
 	                }
 	                if(stockPrice.getCompanyCode()!=null) {
-	                 excelUploadRepository.save(stockPrice);}              
-	                }     
-	            workbook.close();
+	                	StockPrice newStockPrice=excelUploadRepository.getStock(stockPrice.getDate(), stockPrice.getTime(), stockPrice.getCompanyCode(), stockPrice.getStockExchange());
+	                	if(newStockPrice==null) {
+	                		count=count+1;
+	                		excelUploadRepository.save(stockPrice);
+	                	}
+	                 }              
+	                }  
+	            
 	            
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

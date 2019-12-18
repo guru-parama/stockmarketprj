@@ -11,7 +11,7 @@ import com.cognizant.userauthservice.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	@Query(value="SELECT u from User u where u.userName = :userName ")
-	public User findByUserName(@Param("userName") String userName) throws UsernameNotFoundException;
+	@Query(value="SELECT u from User u where u.username = :username ")
+	public User findByUserName(@Param("username") String username) throws UsernameNotFoundException;
 
 }

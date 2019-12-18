@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   passwordFlag: boolean;
   newUser: User = {
     id: null,
-    userName: "",
+    username: "",
     password: "",
     email: "",
     mobileNumber: "",
@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup(){
-    this.newUser.userName = this.userForm.value.userName;
+    this.newUser.username = this.userForm.value.userName;
     this.newUser.email = this.userForm.value.email;
     this.newUser.mobileNumber = this.userForm.value.mobileNumber;
     this.newUser.password = this.userForm.value.password;
