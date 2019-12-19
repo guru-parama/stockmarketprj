@@ -1,15 +1,19 @@
-<!-- <div *ngIf="dataLoaded | async" class="container">
-    <div class=" p-0 m-3 col-12 justify-content-center">
-            <h3>Select Company</h3>
-        
-            <select id="vendorType" [(ngModel)]="companyCode" class="form-control">
-                <option *ngFor="let company of companies" value="{{company.companyCode}}">{{company.name}} - {{company.companyCode}}</option>
-                </select>
-                <button class="btn bg-danger my-3 save-button text-white btn-block" 
-                type="button" 
-                (click) = "filterSelectedData()">
-                Plot</button>
+<div class="container col-6">
+        <div class="container mb-2">
+            <h3>Select Stock Exchange</h3>
         </div>
-    </div> -->
-
+        <div class="container mb-2">
+            <select  class="form-control"
+                (change)="saveCompanyTwo($event.target.value)">
+                <option value="true" selected disabled>Select Second Company</option>
+                <option value="NSE">NSE</option>
+                <option value="BSE">BSE</option>
+                <option value="CSE">CSE</option>
+            </select>
+        </div>
+    
+</div>
+<div class="justify-content-center d-flex" > 
+            <button (click)="downlaodExcel()" class="pl-3 btn btn-dark text-alignment " style="border-top-left-radius: 0%; border-top-right-radius: 0%">Download Data</button>
+            </div>
 <div id="container"></div>

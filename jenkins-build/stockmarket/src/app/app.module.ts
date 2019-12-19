@@ -13,6 +13,7 @@ import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.co
 import { ProfileComponent } from './site/profile/profile.component';
 import { CompanyComponent } from './stock/company/company.component';
 import { ChartsComponent } from './stock/charts/charts.component';
+import { ChartCompareComponent } from './stock/chart-compare/chart-compare.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ChartsComponent } from './stock/charts/charts.component';
     ExcelUploadComponent,
     ProfileComponent,
     CompanyComponent,
-    ChartsComponent
+    ChartsComponent,
+    ChartCompareComponent
   ],
   imports: [
     BrowserModule,
