@@ -7,6 +7,7 @@ import { AuthGuard } from './site/auth.guard';
 import { ProfileComponent } from './site/profile/profile.component';
 import { CompanyComponent } from './stock/company/company.component';
 import { ChartsComponent } from './stock/charts/charts.component';
+import { ChartCompareComponent } from './stock/chart-compare/chart-compare.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path:'company-list', component: CompanyComponent, canActivate: [AuthGuard]},
   {path:'charts/:code', component: ChartsComponent, canActivate: [AuthGuard]},
   {path:'charts', component: ChartsComponent, canActivate: [AuthGuard]},
-  
+  {path:'chart-compare', component: ChartCompareComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

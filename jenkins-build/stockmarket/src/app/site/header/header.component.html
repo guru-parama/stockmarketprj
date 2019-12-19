@@ -8,6 +8,7 @@
                         class="material-icons align-bottom">perm_identity</i> {{getUsername()}}</a></li>
             <li *ngIf="getRoll() == null" class="nav-item"><a class="nav-link" routerLink="./signup">Signup</a></li>
             <li *ngIf="getRoll() != null" class="nav-item"><a class="nav-link" routerLink="./company-list">Companies</a></li>
+            <li *ngIf="getRoll() != null" class="nav-item"><a class="nav-link" routerLink="./chart-compare">Comparision charts</a></li>
             <li *ngIf="getRoll() == null" class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
             <li *ngIf="getRoll() == 'admin'" class="nav-item"><a class="nav-link" routerLink="/excel-upload">Stock Data Upload</a></li>
             <li *ngIf="getRoll() != null"class="nav-item"><a class="nav-link" (click)='signout()' routerLink="">LogOut</a></li>
