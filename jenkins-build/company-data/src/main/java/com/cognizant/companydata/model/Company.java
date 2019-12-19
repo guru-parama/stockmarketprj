@@ -1,7 +1,6 @@
 package com.cognizant.companydata.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -64,8 +63,25 @@ public class Company {
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "company_stock", joinColumns = @JoinColumn(name = "cs_cp_id"), inverseJoinColumns = @JoinColumn(name = "cs_ex_id"))
-	private Set<StockExchange> stockExchangeList;
+	private List<StockExchange> stockExchangeList;
 
+	
+
+	public Company(@NotNull int id, @NotNull Long companyCode, @NotNull String name, @NotNull Long turnover,
+			@NotNull String ceo, @NotNull List<BoardOfDirectors> boardOfDirectorsList, @NotNull boolean listed,
+			@NotNull Sector sector, @NotNull String aboutCompany, List<StockExchange> stockExchangeList) {
+		super();
+		this.id = id;
+		this.companyCode = companyCode;
+		this.name = name;
+		this.turnover = turnover;
+		this.ceo = ceo;
+		this.boardOfDirectorsList = boardOfDirectorsList;
+		this.listed = listed;
+		this.sector = sector;
+		this.aboutCompany = aboutCompany;
+		this.stockExchangeList = stockExchangeList;
+	}
 
 	public Company() {
 		super();
@@ -140,32 +156,16 @@ public class Company {
 	}
 	
 
-	public Set<StockExchange> getStockExchangeList() {
+	public List<StockExchange> getStockExchangeList() {
 		return stockExchangeList;
 	}
 
-	public void setStockExchangeList(Set<StockExchange> stockExchangeList) {
+	public void setStockExchangeList(List<StockExchange> stockExchangeList) {
 		this.stockExchangeList = stockExchangeList;
 	}
 
 	public void setAboutCompany(String aboutCompany) {
 		this.aboutCompany = aboutCompany;
 	}
-
-	public Company(@NotNull int id, @NotNull Long companyCode, @NotNull String name, @NotNull Long turnover,
-			@NotNull String ceo, @NotNull List<BoardOfDirectors> boardOfDirectorsList, @NotNull boolean listed,
-			@NotNull Sector sector, @NotNull String aboutCompany) {
-		super();
-		this.id = id;
-		this.companyCode = companyCode;
-		this.name = name;
-		this.turnover = turnover;
-		this.ceo = ceo;
-		this.boardOfDirectorsList = boardOfDirectorsList;
-		this.listed = listed;
-		this.sector = sector;
-		this.aboutCompany = aboutCompany;
-	}
-
 }
 

@@ -14,6 +14,15 @@ public class StockExchangeService {
 	@Autowired
 	StockExchangeRepository exchangeRepository;
 	
+	
+	
+	public StockExchangeService(StockExchangeRepository exchangeRepository) {
+		super();
+		this.exchangeRepository = exchangeRepository;
+	}
+
+
+
 	public List<StockExchange> getAllStockExchange(){
 		return exchangeRepository.findAll(); 
 	}

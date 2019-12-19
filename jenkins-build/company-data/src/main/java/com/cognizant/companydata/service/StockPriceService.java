@@ -15,6 +15,11 @@ public class StockPriceService {
 	@Autowired
 	StockPriceRepository stockPriceRepository;
 	
+	public StockPriceService(StockPriceRepository stockPriceRepository) {
+		super();
+		this.stockPriceRepository = stockPriceRepository;
+	}
+
 	@Transactional
 	public List<StockPrice> getAllStockPrice(long companyCode) {
 		return stockPriceRepository.getAllStockPrice(companyCode);

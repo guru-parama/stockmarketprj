@@ -27,6 +27,15 @@ public class BoardOfDirectors {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public BoardOfDirectors(int id, String name, int companyId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.companyId = companyId;
+	}
+
+
 	public int getId() {
 		return id;
 	}
