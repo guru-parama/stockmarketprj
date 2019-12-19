@@ -103,13 +103,7 @@ export class ChartsComponent implements OnInit {
           
           
         })
-        data.sort((n1, n2) => {
-          if (n1[0] > n2[0]) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+        data.sort((n1, n2) => n1[0]-n2[0]);
         this.chart=Highcharts.chart('container',this.options);
         this.chart.addSeries({
           name: this.companyCode + " NSE",
@@ -126,13 +120,7 @@ export class ChartsComponent implements OnInit {
           data2.push(point2);
           
         })
-        data2.sort((n1, n2) => {
-          if (n1[0] > n2[0]) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+        data2.sort((n1, n2) => n1[0]-n2[0]);
         this.chart.addSeries({
           name: this.companyCode + " BSE",
           data:data2,
@@ -148,13 +136,7 @@ export class ChartsComponent implements OnInit {
           data3.push(point2);
           
         })
-        data2.sort((n1, n2) => {
-          if (n1[0] > n2[0]) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+        data3.sort((n1, n2) => n1[0]-n2[0]);
         this.chart.addSeries({
           name: this.companyCode + " CSE",
           data:data3,
