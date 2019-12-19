@@ -16,10 +16,11 @@ public class StockPriceService {
 	StockPriceRepository stockPriceRepository;
 	
 	@Transactional
-	public List<StockPrice> getAllStockPrice() {
-		return stockPriceRepository.findAll();
+	public List<StockPrice> getAllStockPrice(long companyCode) {
+		return stockPriceRepository.getAllStockPrice(companyCode);
 	}
 	
+	@Transactional
 	public List<StockPrice> getLatestStock(long companyCode){
 		return stockPriceRepository.getStockPrice(companyCode);
 	}

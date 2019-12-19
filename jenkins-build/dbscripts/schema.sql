@@ -187,5 +187,22 @@ INSERT INTO `stock_market`.`stock_exchange` (`ex_id`, `ex_stock_exchange`, `ex_b
 INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('1', '1', '1');
 INSERT INTO `stock_market`.`board_members` (`bm_id`, `bm_cp_name`, `bm_cp_id`) VALUES ('1', 'MACKINSON', '1');
 
+INSERT INTO `stock_market`.`role` (`ro_id`, `ro_name`) VALUES ('1', 'ADMIN');
+INSERT INTO `stock_market`.`role` (`ro_id`, `ro_name`) VALUES ('2', 'USER');
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("sam",1);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Elon",2);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Pichai",2);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Satya",3);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Premji",3);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Rick",4);
+INSERT INTO `stock_market`.`board_members`(`bm_cp_name`,`bm_cp_id`) values("Morty",4);
+
+INSERT INTO `stock_market`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('2', '500113', 'SBI', '54688', 'Zain', '1', '1', 'statebank of India');
+INSERT INTO `stock_market`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('3', '500114', 'Google', '546899', 'Rohith', '1', '2', 'Search engine company');
+INSERT INTO `stock_market`.`company` (`cp_id`, `cp_code`, `cp_name`, `cp_turnover`, `cp_ceo`, `cp_listed`, `cp_se_id`, `cp_brief`) VALUES ('4', '500115', 'Microsoft', '546898', 'Avinash', '0', '2', 'laptop company');
+INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('3', '2', '1');
+INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('4', '3', '3');
+INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('5', '4', '2');
+INSERT INTO `stock_market`.`company_stock` (`cs_id`, `cs_cp_id`, `cs_ex_id`) VALUES ('6', '4', '1');
 
 

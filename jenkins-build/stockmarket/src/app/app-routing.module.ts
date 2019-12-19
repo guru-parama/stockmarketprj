@@ -6,6 +6,7 @@ import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.co
 import { AuthGuard } from './site/auth.guard';
 import { ProfileComponent } from './site/profile/profile.component';
 import { CompanyComponent } from './stock/company/company.component';
+import { ChartsComponent } from './stock/charts/charts.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,9 @@ const routes: Routes = [
   {path:'excel-upload', component: ExcelUploadComponent, canActivate: [AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path:'company-list', component: CompanyComponent, canActivate: [AuthGuard]},
+  {path:'charts/:code', component: ChartsComponent, canActivate: [AuthGuard]},
+  {path:'charts', component: ChartsComponent, canActivate: [AuthGuard]},
+  
 ];
 
 @NgModule({

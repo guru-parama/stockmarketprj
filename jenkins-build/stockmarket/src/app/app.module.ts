@@ -12,6 +12,7 @@ import { SummaryComponent } from './file-upload/summary/summary.component';
 import { ExcelUploadComponent } from './file-upload/excel-upload/excel-upload.component';
 import { ProfileComponent } from './site/profile/profile.component';
 import { CompanyComponent } from './stock/company/company.component';
+import { ChartsComponent } from './stock/charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CompanyComponent } from './stock/company/company.component';
     SummaryComponent,
     ExcelUploadComponent,
     ProfileComponent,
-    CompanyComponent
+    CompanyComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,

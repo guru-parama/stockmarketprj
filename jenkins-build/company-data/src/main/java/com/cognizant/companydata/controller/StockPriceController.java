@@ -17,9 +17,9 @@ public class StockPriceController {
 
 	@Autowired
 	StockPriceService stockPriceService;
-	@GetMapping("/stock-price")
-	public List<StockPrice> getAllStockList() {
-		return stockPriceService.getAllStockPrice();
+	@GetMapping("/stock-price/{companyCode}")
+	public List<StockPrice> getAllStockList(@PathVariable long companyCode) {
+		return stockPriceService.getAllStockPrice(companyCode);
 	}
 	
 	@GetMapping("/stock-price/latest/{companyCode}")

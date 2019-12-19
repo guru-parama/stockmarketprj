@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       private router: Router) {
     userService.getUser(authService.getUserName()).subscribe(response =>{
       this.user = response;
-      console.log(this.user);
     })
    }
 
